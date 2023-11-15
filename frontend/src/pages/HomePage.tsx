@@ -1,6 +1,29 @@
 import { Col, Row } from "react-bootstrap";
 import { sampleProducts } from "../data";
 import { Link } from "react-router-dom";
+import { State } from "../types/State";
+import { Action } from "../types/Action";
+
+
+
+const initialState: State = {
+  products: [],
+  loading: true,
+  error: '',
+}
+
+const reducer =(state: State , action: Action) =>{
+   switch (action.type) {
+    case 'FETCH_REQUEST':
+      return {...state, loading: true}
+    case 'FETCH_SUCCESS':
+        return {...state, product:action.payload, loading: false}
+    case 'FETCH_FAIL':
+          return {...state, product:action.payload, loading: false}   
+    }
+}
+
+
 const HomePage = () => {
   return (
     <div>
